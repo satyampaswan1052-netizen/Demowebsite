@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StockFlow — Smart Inventory & Billing</title>
+<meta name="description" content="Modern inventory, live stock, MRP and billing dashboard concept.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg-orb orb1"></div><div class="bg-orb orb2"></div>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">S</span><span>Stock<span>Flow</span></span></a>
+  <nav>
+    <a href="#dashboard">Dashboard</a><a href="#products">Products</a><a href="#orders">Orders</a><a href="#billing">Billing</a>
+  </nav>
+  <div class="top-actions"><button class="icon-btn" id="themeBtn">☾</button><button class="btn btn-primary" onclick="openModal('loginModal')">Login</button></div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="pill"><span class="pulse"></span> Live inventory system</div>
+    <h1>Run your stock.<br><span>Grow your business.</span></h1>
+    <p>Beautiful, fast inventory, live MRP, orders and billing — designed to work with your ERP workflow.</p>
+    <div class="hero-buttons"><button class="btn btn-primary btn-lg" onclick="scrollToId('dashboard')">Explore Dashboard ↗</button><button class="btn btn-ghost btn-lg" onclick="openModal('demoModal')">Watch Demo ▶</button></div>
+    <div class="trust"><div class="avatars"><i>R</i><i>A</i><i>M</i><i>+</i></div><span><b>2,500+</b> businesses managing smarter</span></div>
+  </div>
+  <div class="hero-card">
+    <div class="card-glow"></div>
+    <div class="mini-top"><span>LIVE STOCK</span><span class="live-dot">● LIVE</span></div>
+    <div class="hero-number">₹ 24,86,420</div>
+    <div class="muted">Inventory value <b class="up">+12.8%</b></div>
+    <div class="sparkline"><span style="height:34%"></span><span style="height:48%"></span><span style="height:42%"></span><span style="height:60%"></span><span style="height:55%"></span><span style="height:74%"></span><span style="height:67%"></span><span style="height:88%"></span><span style="height:79%"></span><span style="height:96%"></span></div>
+    <div class="hero-stats"><div><small>Products</small><strong>1,842</strong></div><div><small>Low Stock</small><strong class="warn">28</strong></div><div><small>Today Sales</small><strong>₹1.82L</strong></div></div>
+  </div>
+</section>
+
+<section class="section" id="dashboard">
+  <div class="section-head"><div><span class="eyebrow">COMMAND CENTER</span><h2>Everything at a glance.</h2></div><button class="btn btn-soft" onclick="refreshDashboard()">↻ Refresh live data</button></div>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-icon">₹</div><span>Today's Revenue</span><strong>₹1,82,450</strong><em>↑ 18.4%</em></div>
+    <div class="kpi"><div class="kpi-icon">▦</div><span>Total Products</span><strong>1,842</strong><em>↑ 4.2%</em></div>
+    <div class="kpi"><div class="kpi-icon">◈</div><span>Orders</span><strong>126</strong><em>↑ 11.7%</em></div>
+    <div class="kpi"><div class="kpi-icon">!</div><span>Low Stock</span><strong>28</strong><em class="danger">Needs attention</em></div>
+  </div>
+  <div class="dashboard-grid">
+    <div class="panel chart-panel"><div class="panel-head"><div><h3>Sales overview</h3><p>Revenue performance</p></div><select><option>Last 7 days</option><option>Last 30 days</option><option>This year</option></select></div>
+      <div class="chart"><div class="gridline g1"></div><div class="gridline g2"></div><div class="gridline g3"></div><div class="bars"><i style="height:44%"></i><i style="height:62%"></i><i style="height:52%"></i><i style="height:74%"></i><i style="height:67%"></i><i style="height:86%"></i><i style="height:96%"></i></div></div>
+      <div class="chart-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+    </div>
+    <div class="panel"><div class="panel-head"><div><h3>Stock health</h3><p>Across all warehouses</p></div><span class="more">•••</span></div>
+      <div class="donut-wrap"><div class="donut"><b>1,842</b><small>SKUs</small></div><div class="legend"><span><i class="dot green"></i>Healthy <b>1,624</b></span><span><i class="dot yellow"></i>Low <b>190</b></span><span><i class="dot red"></i>Out <b>28</b></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <div class="section-head"><div><span class="eyebrow">PRODUCTS</span><h2>Live product catalogue.</h2></div><button class="btn btn-primary" onclick="openModal('productModal')">+ Add Product</button></div>
+  <div class="toolbar"><input id="search" placeholder="⌕  Search product, SKU, barcode..." oninput="filterProducts()"><select id="category" onchange="filterProducts()"><option value="">All categories</option><option>FMCG</option><option>Personal Care</option><option>Beverages</option><option>Household</option></select><button class="btn btn-soft">Export CSV</button></div>
+  <div class="table-wrap"><table id="productTable"><thead><tr><th>Product</th><th>SKU</th><th>MRP</th><th>Sale Price</th><th>Stock</th><th>Status</th><th></th></tr></thead><tbody>
+  <tr data-search="premium basmati rice rice"><td><div class="product"><span class="prod-img">🍚</span><div><b>Premium Basmati Rice</b><small>FMCG · 5 kg</small></div></div></td><td>SKU-10482</td><td>₹690</td><td>₹625</td><td><b>148</b></td><td><span class="status ok">In stock</span></td><td><button class="dots">•••</button></td></tr>
+  <tr data-search="fresh mint face wash personal care"><td><div class="product"><span class="prod-img">🧴</span><div><b>Fresh Mint Face Wash</b><small>Personal Care · 100 ml</small></div></div></td><td>SKU-22910</td><td>₹299</td><td>₹249</td><td><b>24</b></td><td><span class="status low">Low stock</span></td><td><button class="dots">•••</button></td></tr>
+  <tr data-search="sparkle soda beverages"><td><div class="product"><span class="prod-img">🥤</span><div><b>Sparkle Soda</b><small>Beverages · 750 ml</small></div></div></td><td>SKU-77102</td><td>₹55</td><td>₹48</td><td><b>862</b></td><td><span class="status ok">In stock</span></td><td><button class="dots">•••</button></td></tr>
+  <tr data-search="ultra clean detergent household"><td><div class="product"><span class="prod-img">🫧</span><div><b>Ultra Clean Detergent</b><small>Household · 2 kg</small></div></div></td><td>SKU-51803</td><td>₹410</td><td>₹365</td><td><b>0</b></td><td><span class="status out">Out of stock</span></td><td><button class="dots">•••</button></td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="section feature-section">
+  <div class="section-head"><div><span class="eyebrow">POWERFUL FEATURES</span><h2>Built for the whole business.</h2></div></div>
+  <div class="feature-grid">
+    <article class="feature"><span>⚡</span><h3>Live Stock Sync</h3><p>Keep website inventory aligned with your ERP data with a clean integration layer.</p></article>
+    <article class="feature"><span>🏷️</span><h3>Live MRP & Pricing</h3><p>Show current MRP, selling price, discount and GST-ready product information.</p></article>
+    <article class="feature"><span>🧾</span><h3>Smart Billing</h3><p>Invoice-ready workflow with customer details, taxes, discounts and payment status.</p></article>
+    <article class="feature"><span>📦</span><h3>Inventory Control</h3><p>Track stock, low-stock alerts, returns, purchases and warehouse quantities.</p></article>
+    <article class="feature"><span>🔔</span><h3>Alerts & Reports</h3><p>Spot low stock, pending orders, sales trends and operational exceptions quickly.</p></article>
+    <article class="feature"><span>🔐</span><h3>Role-based Access</h3><p>Separate admin, manager, billing and staff access for safer operations.</p></article>
+  </div>
+</section>
+
+<section class="section" id="orders">
+  <div class="section-head"><div><span class="eyebrow">ORDERS</span><h2>Order pipeline.</h2></div><button class="btn btn-soft" onclick="toast('Order list refreshed')">Refresh</button></div>
+  <div class="orders">
+    <div class="order-card"><span class="order-icon">🛒</span><div><b>#ORD-10482</b><small>Rahul Traders · 4 items</small></div><strong>₹12,480</strong><span class="status ok">Paid</span></div>
+    <div class="order-card"><span class="order-icon">📦</span><div><b>#ORD-10481</b><small>Sharma Store · 9 items</small></div><strong>₹8,920</strong><span class="status pending">Processing</span></div>
+    <div class="order-card"><span class="order-icon">🚚</span><div><b>#ORD-10480</b><small>City Mart · 6 items</small></div><strong>₹4,680</strong><span class="status info">Shipped</span></div>
+  </div>
+</section>
+
+<section class="section billing" id="billing">
+  <div class="billing-card"><div><span class="eyebrow">BILLING</span><h2>Fast checkout. Clean invoices.</h2><p>Create a professional billing flow with customer search, barcode support, GST, discounts and payment tracking.</p><div class="checks"><span>✓ GST-ready</span><span>✓ Barcode-ready</span><span>✓ PDF invoice</span><span>✓ Payment tracking</span></div></div><button class="btn btn-primary btn-lg" onclick="openModal('invoiceModal')">Create Demo Invoice</button></div>
+</section>
+
+<section class="cta"><div><span class="eyebrow">READY TO SCALE?</span><h2>Your business, beautifully organized.</h2><p>One dashboard for products, stock, sales, orders and billing.</p></div><button class="btn btn-white btn-lg" onclick="openModal('demoModal')">Get Started →</button></section>
+</main>
+
+<footer><div class="brand"><span class="brand-mark">S</span><span>Stock<span>Flow</span></span></div><p>© 2026 StockFlow. Demo interface — connect your ERP/API for live data.</p><div><a href="#dashboard">Dashboard</a><a href="#products">Products</a><a href="#billing">Billing</a></div></footer>
+
+<div class="modal" id="loginModal"><div class="modal-box"><button class="close" onclick="closeModals()">×</button><h2>Welcome back</h2><p>Sign in to your business dashboard.</p><input placeholder="Email / Mobile"><input placeholder="Password" type="password"><button class="btn btn-primary full" onclick="closeModals();toast('Demo login successful')">Sign In</button></div></div>
+<div class="modal" id="demoModal"><div class="modal-box"><button class="close" onclick="closeModals()">×</button><h2>Book a demo</h2><p>Tell us how you want your inventory system to work.</p><input placeholder="Business name"><input placeholder="Phone number"><textarea placeholder="Features you need"></textarea><button class="btn btn-primary full" onclick="closeModals();toast('Demo request submitted')">Request Demo</button></div></div>
+<div class="modal" id="productModal"><div class="modal-box"><button class="close" onclick="closeModals()">×</button><h2>Add product</h2><input placeholder="Product name"><input placeholder="SKU / Barcode"><div class="two"><input placeholder="MRP"><input placeholder="Sale price"></div><input placeholder="Opening stock"><button class="btn btn-primary full" onclick="closeModals();toast('Product added to demo catalogue')">Add Product</button></div></div>
+<div class="modal" id="invoiceModal"><div class="modal-box invoice"><button class="close" onclick="closeModals()">×</button><div class="invoice-head"><div><b>STOCKFLOW</b><small>Tax Invoice · Demo</small></div><strong>#INV-20841</strong></div><hr><p><b>Customer:</b> Rahul Traders</p><div class="invoice-line"><span>Premium Basmati Rice × 4</span><b>₹2,500</b></div><div class="invoice-line"><span>Fresh Mint Face Wash × 3</span><b>₹747</b></div><div class="invoice-line"><span>GST</span><b>₹292</b></div><hr><div class="invoice-total"><span>Total</span><strong>₹3,539</strong></div><button class="btn btn-primary full" onclick="closeModals();toast('Demo invoice generated')">Generate Invoice</button></div></div>
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
